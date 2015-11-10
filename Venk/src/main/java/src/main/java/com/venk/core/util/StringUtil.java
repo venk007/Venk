@@ -1,5 +1,8 @@
 package src.main.java.com.venk.core.util;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 //import java.io.PrintWriter;
 //import java.io.StringWriter;
 //import java.security.MessageDigest;
@@ -117,6 +120,33 @@ public class StringUtil {
 		//返回解码后的字符串
 		return tmp.toString();
 	}
+	
+	/**
+	 * MD5加密
+	 * @param args
+	 */
+	public static String toMd5(String str) {
+
+		String re = null;
+		byte encrypt[];
+		try {
+			byte[] tem = str.getBytes();
+			MessageDigest md5 = MessageDigest.getInstance("md5");
+			md5.reset();
+			md5.update(tem);
+			encrypt = md5.digest();
+			StringBuilder sb = new StringBuilder();
+			
+			for (byte t : encrypt) {
+				
+				sb.append(Integer.toHexString(t & 0xFF));
+			}
+			re = sb.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return re;
+	}
 
 	
 	  public static void main(String[] args) { 
@@ -132,6 +162,14 @@ public class StringUtil {
 		  String testUnescapeB = "%60%7e%21%40%2d%3d%2b%2c%2e%2f%3f01234aBcDeFg%u554a%u54c8";
 		  System.out.println("A解码：" + unescape(testUnescapeA));
 		  System.out.println("B解码：" + unescape(testUnescapeB));*/
+		  
+		  // 测试md5加密
+		  String testMd5 = "Hello Venk";
+		  System.out.println(toMd5(testMd5));
+		  System.out.println(toMd5("Hello Venk"));
+		  System.out.println(toMd5("Hello md5"));
+		  System.out.println(toMd5("c945041e6aa78ff5ca8fdb2a238d9d")); 
+		  System.out.println(toMd5(toMd5("Hello md5")));
 	  
 	  }
 	   
