@@ -55,34 +55,3 @@ public class TimerTest {
 		}, 3*1000, 2*1000);
 	}
 }
-
-/*
-
-schedule和scheduleAtFixedRate的区别在于，如果指定开始执行的时间在当前系统运行时间之前，
-scheduleAtFixedRate会把已经过去的时间也作为周期执行，而schedule不会把过去的时间算上。
-
-比如
-
-SimpleDateFormat fTime = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-   Date d1 = fTime.parse("2005/12/30 14:10:00");
-  
-   t.scheduleAtFixedRate(new TimerTask(){
-    public void run()
-    {
-        System.out.println("this is task you do6");
-    }
-   },d1,3*60*1000);
-
-间隔时间是3分钟，指定开始时间是2005/12/30 14:10:00，如果我在14:17:00分执行这个程序，那么会立刻打印3次
-
-this is task you do6      //14:10
-this is task you do6      //14:13
-this is task you do6      //14:16
-
-并且注意，下一次执行是在14:19 而不是 14:20。就是说是从指定的开始时间开始计时，而不是从执行时间开始计时。
-
-但是上面如果用schedule方法，间隔时间是3分钟，指定开始时间是2005/12/30 14:10:00，
-那么在14:17:00分执行这个程序，则立即执行程序一次,
-并且下一次的执行时间是 14:20，而不是从14:10开始算的周期(14:19)。
-
-*/
