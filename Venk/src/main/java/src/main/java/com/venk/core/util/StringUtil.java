@@ -151,25 +151,25 @@ public class StringUtil {
 	
 	  public static void main(String[] args) { 
 		  
-/*		  // 测试escape编码
-		  String testEscapeA = "嘿嘿啊哈";
+		  // 测试escape编码
+		 /* String testEscapeA = "嘿嘿啊哈";
 		  String testEscapeB = "`~!@-=+,./?01234aBcDeFg啊哈";
 		  System.out.println("A编码：" + escape(testEscapeA));
-		  System.out.println("B编码：" + escape(testEscapeB));
+		  System.out.println("B编码：" + escape(testEscapeB));*/
 		  
-		  // 测试unescape解码
-		  String testUnescapeA = "%u563f%u563f%u554a%u54c8";
+	  // 测试unescape解码
+		 /* String testUnescapeA = "%u563f%u563f%u554a%u54c8";
 		  String testUnescapeB = "%60%7e%21%40%2d%3d%2b%2c%2e%2f%3f01234aBcDeFg%u554a%u54c8";
 		  System.out.println("A解码：" + unescape(testUnescapeA));
 		  System.out.println("B解码：" + unescape(testUnescapeB));*/
 		  
 		  // 测试md5加密
-		  String testMd5 = "Hello Venk";
+		/*  String testMd5 = "Hello Venk";
 		  System.out.println(toMd5(testMd5));
 		  System.out.println(toMd5("Hello Venk"));
 		  System.out.println(toMd5("Hello md5"));
 		  System.out.println(toMd5("c945041e6aa78ff5ca8fdb2a238d9d")); 
-		  System.out.println(toMd5(toMd5("Hello md5")));
+		  System.out.println(toMd5(toMd5("Hello md5")));*/
 	  
 	  }
 	   
