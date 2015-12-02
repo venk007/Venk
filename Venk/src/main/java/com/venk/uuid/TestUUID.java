@@ -8,7 +8,7 @@ package com.venk.uuid;
  * 
  */
 
-public class Test {
+public class TestUUID {
 
 	public static void main(String[] args) {
 
