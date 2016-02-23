@@ -22,7 +22,7 @@ public class StringArray {
 		int teamlen = 3;	//设置每组数据长度[1,1,0,1,1,0,1,1,0](例:每组3个,所选数据为第三个)
 		int teamloc = 2;	//起点位置，在每组中的位置-1
 		int j = 0;
-		String[] output = new String[input.length/teamlen];
+		String[] output = new String[len/teamlen];
 		for(int i = teamloc; i <= len; i+=teamlen){
 			output[j] = input[i];
 			j++;
