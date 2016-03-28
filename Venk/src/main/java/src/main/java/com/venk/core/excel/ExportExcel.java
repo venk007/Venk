@@ -1,5 +1,6 @@
 package src.main.java.com.venk.core.excel;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -26,9 +27,9 @@ import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 	 */
 	public class ExportExcel {
 	
-	/** 文件输出位置，设置在D盘的temp目录 */
+	/** 文件输出位置，设置在D盘的temp目录(该文件夹需已存在) */
 	public static String outputName = "test-" + dateStamp() + ".xlsx";
-	public static String outputFile = "D:/temp/" + outputName;
+	public static String outputFile = "D:" + File.separator +"temp" + File.separator + outputName;
 	
 	/**
 	 * 设置单元格格式
@@ -72,7 +73,7 @@ import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 		
 		try {
 			// 创建工作簿(SXSSF为防止内存溢出,可设置缓存值)
-			Workbook workbook = new SXSSFWorkbook(100);
+			Workbook workbook = new SXSSFWorkbook(500);
 			// 新建工作表，其名为缺省值(也可设置)
 			Sheet sheet = workbook.createSheet("Venk007");
 			// 在索引0的位置创建行（最顶端的行）
@@ -86,26 +87,30 @@ import org.apache.poi.xssf.usermodel.XSSFRichTextString;
 				cell.setCellValue(new XSSFRichTextString(cellText[textNum]));
 				cellStyle(cell, workbook); // 设置列标题格式
 			}
-			
+			long startTime = System.currentTimeMillis();
 			// 遍历内容
-			if (list != null && list.size() != 0) {
-				for (int rownum = 0; rownum < list.size(); rownum++) {
-					Row r = sheet.createRow(rownum + 1);
-					Gun rs = list.get(rownum);
-					r.createCell(0).setCellValue(rs.getName());
-					r.createCell(1).setCellValue(rs.getWeight());
-					r.createCell(2).setCellValue(rs.getCapacity());
-					r.createCell(3).setCellValue(rs.getRate() + "RPM");
-					r.createCell(4).setCellValue(rs.getLength());
-					r.createCell(5).setCellValue(rs.getProductCountry());
-					if (rs.getRemarks() != null && !"".equals(rs.getRemarks())) {
-						r.createCell(6).setCellValue(rs.getRemarks());
-					} else {
-						r.createCell(6).setCellValue("Venk's favor!");
+			//for (int roll = 0; roll < 1000000; roll++) {
+				if (list != null && list.size() != 0) {
+					for (int rownum = 0; rownum < list.size(); rownum++) {
+						Row r = sheet.createRow(rownum + 1);
+						Gun rs = list.get(rownum);
+						r.createCell(0).setCellValue(rs.getName());
+						r.createCell(1).setCellValue(rs.getWeight());
+						r.createCell(2).setCellValue(rs.getCapacity());
+						r.createCell(3).setCellValue(rs.getRate() + "RPM");
+						r.createCell(4).setCellValue(rs.getLength());
+						r.createCell(5).setCellValue(rs.getProductCountry());
+						if (rs.getRemarks() != null && !"".equals(rs.getRemarks())) {
+							r.createCell(6).setCellValue(rs.getRemarks());
+						} else {
+							r.createCell(6).setCellValue("Venk's favor!");
+						}
 					}
 				}
-			}
-			
+			//}
+			long endTime = System.currentTimeMillis();
+			System.out.println("数据封装时间统计: " + (endTime - startTime));
+
 			// 自动调整列宽(Beta)
 			try {
 				for (int tempNum = 0; tempNum < cellText.length; tempNum++) {
