@@ -42,11 +42,11 @@ public class TimeStampAndString {
 	 * @return String
 	 * @throws Exception
 	 */
-	public static String timeToStringDateTime(Timestamp opTime) {
+	public static String timeToStringDateTime(Timestamp ts) {
 		DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		try {
-			if (opTime != null) {
-				return sdf.format(opTime);
+			if (ts != null) {
+				return sdf.format(ts);
 			}
 		} catch (Exception e) {
 			System.out.println("TimeStamp转换String格式出错");
@@ -62,15 +62,15 @@ public class TimeStampAndString {
 	 * @return String
 	 * @throws Exception
 	 */
-	public static Timestamp stringToTime(String beginDateIn) throws Exception {
+	public static Timestamp stringToTime(String strTime) throws Exception {
 
-		String beginDateNew = "";
-		if ((beginDateIn != null) && (!"".equals(beginDateIn))) {
+		String dateNew = "";
+		if ((strTime != null) && (!"".equals(strTime))) {
 			try {
-				beginDateNew = beginDateIn.concat(" 00:00:00"); // 默认添加时分秒为0时0分0秒
-				Timestamp beginDate = new Timestamp(System.currentTimeMillis());
-				beginDate = Timestamp.valueOf(beginDateNew);
-				return beginDate;
+				dateNew = strTime.concat(" 00:00:00"); // 默认添加时分秒为0时0分0秒
+				Timestamp time = new Timestamp(System.currentTimeMillis());
+				time = Timestamp.valueOf(dateNew);
+				return time;
 			} catch (Exception e) {
 				System.out.println("String日期格式转换TimeStamp异常");
 				e.printStackTrace();
@@ -87,7 +87,7 @@ public class TimeStampAndString {
 		String dateStr = timeToStringDate(time);
 		String dateTimeStr = timeToStringDateTime(time);
 		Timestamp strToTime = stringToTime(dateStr);
-		
+
 		System.out.println("dateStr: \n" + dateStr);
 		System.out.println("\ndateTimeStr: \n" + dateTimeStr);
 		System.out.println("\nstrToTime: \n" + strToTime);
