@@ -19,7 +19,7 @@ public class PatternUtil {
 	
 	
 	public static void main(String[] args) throws Exception {
-	String[] tel = {"12345678","01-123456","010-123456","010-1234567","0101-12345678","01002-123456789","010-12340000-001"}; 
+	String[] tel = {"12345678","01-123456","010-123456","010-1234567","010-12345678","0101-12345678","01002-123456789","010-12340000-001"}; 
 		for(String telNo : tel){
 			Matcher m = patternTelNo.matcher(telNo);
 			if(m.matches()){
